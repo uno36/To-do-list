@@ -44,6 +44,8 @@ const addTask = () => {
 
     const moreButton = document.createElement('button');
     const editButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
+
     editButton.textContent = 'Edit';
     editButton.classList.add('edit-button');
     editButton.addEventListener('click', () => {
@@ -58,6 +60,7 @@ const addTask = () => {
           listItem.appendChild(document.createTextNode('   '));
           listItem.appendChild(taskName);
           editButton.style.display = 'none';
+          deleteButton.style.display = 'none';
           moreButton.style.display = 'inline-block';
           tasks[listItem.dataset.index].description = inputField.value.trim();
           saveTasksToLocalStorage();
@@ -69,23 +72,47 @@ const addTask = () => {
       inputField.focus();
     });
 
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', () => {
+      todoList.removeChild(listItem);
+      tasks.splice(listItem.dataset.index, 1);
+      saveTasksToLocalStorage();
+    });
     moreButton.textContent = '•••';
     moreButton.classList.add('more-button');
     moreButton.addEventListener('click', () => {
-      editButton.style.display = 'inline-block';
+      const menu = document.createElement('div');
+      menu.classList.add('menu');
+
+      const buttonsContainer = document.createElement('div');
+      buttonsContainer.style.display = 'flex';
+      buttonsContainer.style.flexDirection = 'column';
+
+      buttonsContainer.appendChild(editButton);
+      buttonsContainer.appendChild(deleteButton);
+
+      menu.appendChild(buttonsContainer);
+
+      listItem.appendChild(menu);
+
+      editButton.style.display = 'block';
+      deleteButton.style.display = 'block';
+      editButton.style.width = '40px';
+      editButton.style.textDecoration = 'none';
+      deleteButton.style.width = '55px';
       moreButton.style.display = 'none';
     });
 
     moreButton.style.float = 'right';
     moreButton.style.marginRight = '10px';
+    editButton.style.marginTop = '-20px';
+    editButton.style.marginLeft = '90%';
+    deleteButton.style.float = 'right';
+    deleteButton.style.marginLeft = '88%';
     moreButton.style.border = 'none';
     moreButton.style.backgroundColor = 'white';
-    editButton.style.float = 'right';
-    editButton.style.marginRight = '10px';
-
     listItem.appendChild(moreButton);
-    listItem.appendChild(editButton);
-    editButton.style.display = 'none';
 
     listItem.dataset.index = tasks.length - 1;
     todoList.appendChild(listItem);
@@ -93,16 +120,27 @@ const addTask = () => {
     const hr = document.createElement('hr');
     todoList.appendChild(hr);
 
+    deleteButton.addEventListener('click', () => {
+      todoList.removeChild(hr);
+    });
+
     input.value = '';
     errorMessage.textContent = '';
   } else {
-    errorMessage.textContent = 'Task cannot be empty';
+    errorMessage.textContent = 'Task cannot be empty!!';
   }
+  setTimeout(() => {
+    errorMessage.textContent = '';
+  }, 2000);
 };
 
-// Add an event listener to the Add button
-const addButton = document.querySelector('.add');
-addButton.addEventListener('click', addTask);
+const input = document.getElementById('type-todo');
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    addTask();
+  }
+});
 
 const clearCompletedTasks = () => {
   const todoList = document.getElementById('todo-list');
@@ -134,5 +172,6 @@ function loadTasksFromLocalStorage() {
   tasks.push(...storedTasks);
   renderTodoList();
 }
-
 loadTasksFromLocalStorage();
+
+localStorage.clear();
