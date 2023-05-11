@@ -77,10 +77,19 @@ li.check {
 
 .completed {
   margin-top: 3px;
+  text-decoration: line-through;
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.todo-item {
+  align-items: center;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 5px;
 }

@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>    
     <div class="container">
         <div class="header">
-            <h3 class="today">Today's To Do</h3>
+            <h3 class="today">Today's To Do<i class="fa-light fa-arrows-rotate"></i></h3>
             <hr>
             <div class="row"> 
                 <input type="text" id="type-todo" placeholder="Add to your list....">
@@ -19,16 +19,11 @@
             </div>
             <hr>
             
-         <div id="todo-list">
-            <!-- <li class="check"><input type="checkbox" checked > Task1</li>
-            <li><input type="checkbox" > Task2</li>
-            <li><input type="checkbox" > Task3</li> -->
-         </div> 
+         <div id="todo-list"></div> 
          <div class="submit-btn">      
              <input type="submit" name="submit" id="submit" value="Clear all Completed">       
          </div>
-</div> 
-    <script src="https://kit.fontawesome.com/e0661bd0f3.js" crossorigin="anonymous"></script>
+</div>     
     <script src="../dist/index.bundle.js"></script>    
 </body>
 </html>
