@@ -5,12 +5,6 @@ const saveTasksToLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-function updateIndexes() {
-  for (let i = 0; i < tasks.length; i += 1) {
-    tasks[i].index = i;
-  }
-}
-
 const addTask = () => {
   const input = document.querySelector('#type-todo');
   const todoList = document.getElementById('todo-list');
@@ -106,21 +100,7 @@ const addTask = () => {
   }
 };
 
-const input = document.getElementById('type-todo');
-input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    addTask();
-  }
-});
-
-function deleteTask(index) {
-  tasks.splice(index, 1);
-  updateIndexes();
-  saveTasksToLocalStorage();
-  renderTodoList();
-}
-
+// Add an event listener to the Add button
 const addButton = document.querySelector('.add');
 addButton.addEventListener('click', addTask);
 
@@ -140,12 +120,8 @@ const clearCompletedTasks = () => {
       if (hr && hr.tagName === 'HR') {
         todoList.removeChild(hr);
       }
-
-      const { index } = task.dataset;
-      deleteTask(index);
     }
   }
-
   saveTasksToLocalStorage();
 };
 
