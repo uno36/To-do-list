@@ -1,5 +1,6 @@
 import './styles.css';
 import { renderTodoList, tasks } from './index.js';
+import { handleDragStart, handleDragOver, handleDrop } from './drag-and-drop.js';
 
 const saveTasksToLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -169,9 +170,14 @@ clearButton.addEventListener('click', clearCompletedTasks);
 function loadTasksFromLocalStorage() {
   const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.length = 0;
-  tasks.push(...storedTasks);
+  tasks.push(storedTasks);
   renderTodoList();
 }
 loadTasksFromLocalStorage();
 
 localStorage.clear();
+
+const todoList = document.getElementById('todo-list');
+todoList.addEventListener('dragstart', handleDragStart);
+todoList.addEventListener('dragover', handleDragOver);
+todoList.addEventListener('drop', handleDrop);
