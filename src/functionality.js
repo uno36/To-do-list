@@ -169,9 +169,11 @@ clearButton.addEventListener('click', clearCompletedTasks);
 function loadTasksFromLocalStorage() {
   const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.length = 0;
-  tasks.push(storedTasks);
+  tasks.push(...storedTasks);
   renderTodoList();
 }
 loadTasksFromLocalStorage();
 
-localStorage.clear();
+clearButton.addEventListener('click', () => {
+  localStorage.clear();
+});
