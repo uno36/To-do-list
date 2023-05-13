@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 30%;
+  margin: auto;
+  margin-top: 140px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 1px 10px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+hr {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.today,
+#error-message {
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+}
+
+.add {
+  border: none;
+  background-color: #ffff;
+}
+
+#type-todo {
+  border: none;
+  margin-left: 5px;
+  font-size: 15px;
+  width: 100%;
+}
+
+#todo-list {
+  list-style-type: none;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+  user-select: none;
+  cursor: pointer;
+}
+
+li.check {
+  color: black;
+  text-decoration: line-through;
+}
+
+#submit {
+  border: none;
+  background-color: #dcd9d9cc;
+  font-size: 15px;
+  padding: 11px;
+  color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.more-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+.submit-btn {
+  height: 40px;
+  margin-top: -8px;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item {
+  align-items: center;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 5px;
+}
